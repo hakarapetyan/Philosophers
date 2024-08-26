@@ -11,7 +11,8 @@ void init_philo(t_data *data)
 		data->d_philo[i].id = i + 1;
 		data->d_philo[i].last_eat_time = 0;
 		data->d_philo[i].nb_ate = 0;
-
+		data->d_philo[i].data = data;
+		data->d_philo[i].stop_time = 0;
 	}
 }
 
@@ -21,10 +22,11 @@ void init_mutex(t_data *data)
 
 	i = 0;
 	pthread_mutex_init(&(data->print), NULL);
-	pthread_mutex_init(&((*data->forks)),NULL);
-	pthread_mutex_init(&(data->mut_ate),NULL);
-	pthread_mutex_init(&(data->mut_last_eat),NULL);
-	pthread_mutex_init(&(data->mut_die),NULL);
+	pthread_mutex_init(&((*data->forks)), NULL);
+	pthread_mutex_init(&(data->mut_ate), NULL);
+	pthread_mutex_init(&(data->mut_last_eat), NULL);
+	pthread_mutex_init(&(data->mut_die), NULL);
+	pthread_mutex_init(&(data->mut_stop_time), NULL);
 	while (i < data->num_of_philo)
 	{
 		if (i == data->num_of_philo - 1 )

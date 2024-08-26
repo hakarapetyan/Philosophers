@@ -40,32 +40,38 @@ long	ft_atoi(char *str)
 	return (result * sign);
 }
 
-long int timestamp()
+int	is_full(t_data	*data, t_philo philo)
 {
-	struct timeval	time;
-	long int		cur;
-
-	gettimeofday(&time, NULL);
-	cur = time.tv_sec  * 1000 + time.tv_usec / 1000;
-	return (cur);
-}
-
-void print(t_data *data, char *str)
-{
-	long int	time;
-
-	time = timestamp() - data->time_to_start;
-	pthread_mutex_lock(&(data->print));
-	if (time > 0)
-		printf("%ld %d %s",time, data ->d_philo->id, str);
-	pthread_mutex_unlock(&(data->print));
+	if (philo.nb_ate >= data->must_eat_time)
+	return (1);
+	else
+	return (0);
 }
 
 int	is_dead(t_data *data)
 {
+	int	i;
+
+	i = 0;
 	pthread_mutex_lock(&(data->mut_die));
-	if ((int)(timestamp() - data->d_philo->last_eat_time) > data -> time_to_eat)
+	while (i < data->num_of_philo)
+	{
+	if ((int)(timestamp() - data->d_philo[i].last_eat_time) > data -> time_to_eat)
+	{
+		stop_func(data, 1);
+		print(data,"died\n");
+		pthread_mutex_unlock(&(data->mut_die));
 		return (1);
+	}
+	else if (!is_full(data, data->d_philo[i]))
+	{
+		stop_func(data, 1);
+		print(data,"died\n");
+		pthread_mutex_unlock(&(data->mut_die));
+		return (1);
+	}
+	i++;
+	}
 	pthread_mutex_unlock(&(data->mut_die));
 	return(0);
 }

@@ -5,7 +5,9 @@ CFLAGS = -Wall -Wextra -Werror
 SRCS = algoritm.c\
 helpers.c\
 init_struct.c\
-philo.c 
+philo.c\
+creat_join.c\
+another_helpers.c
 
 OBJS = $(SRCS:.c=.o)
 
