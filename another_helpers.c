@@ -32,10 +32,21 @@ void ft_usleep(long int ms)
 
 void clear(t_data *data)
 {
-	pthread_mutex_init(&(data->print), NULL);
-	pthread_mutex_init(&((*data->forks)), NULL);
-	pthread_mutex_init(&(data->mut_ate), NULL);
-	pthread_mutex_init(&(data->mut_last_eat), NULL);
-	pthread_mutex_init(&(data->mut_die), NULL);
-	pthread_mutex_init(&(data->mut_stop_time), NULL);
+	int	i;
+
+	i = 0;
+	pthread_mutex_destroy(&(data->print));
+	pthread_mutex_destroy(&((*data->forks)));
+	pthread_mutex_destroy(&(data->mut_ate));
+	pthread_mutex_destroy(&(data->mut_last_eat));
+	pthread_mutex_destroy(&(data->mut_die));
+	pthread_mutex_destroy(&(data->mut_stop_time));
+	while (i < data ->num_of_philo)
+	{
+		pthread_mutex_destroy((data->d_philo[i].l_fork));
+		pthread_mutex_destroy((data->d_philo[i].r_fork));
+		i++;
+	}
+		free(data->d_philo);
+		free(data->forks);
 }

@@ -53,5 +53,7 @@ void		*one_philo(t_data *data);
 void		philo_eat(t_data *data);
 void		philo_sleep(t_data *data);
 void		*philosophers(void *data);
-void		creat_thread(t_data *data);
+void		create_thread(t_data *data);
+void		join_thread(t_data *data);
+void		clear(t_data *data);
 #endif

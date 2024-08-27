@@ -14,8 +14,6 @@ int check_init_arg(t_data *data, int argc, char **argv)
 	{
 	if (ft_atoi(argv[i]) <= 0)
 	{
-		printf("bye\n");
-		printf("argv =%ld\n", ft_atoi(argv[i]));
 		ft_error("INVALID ARGUMENT");
 		return(1);
 	}
@@ -40,7 +38,15 @@ int	main(int argc, char **argv)
 	t_data data;
 	if(check_init_arg(&data,argc,argv))
 		return (0);
-	init(&data);
-
-	return (0);
+	 init(&data);
+	create_thread(&data);
+	// join_thread(&data);
+	// clear(&data);
+	// int i = 1;
+	// while (i < argc)
+	// {
+	// 	printf("argv=%ld", ft_atoi(argv[i]));
+	// 	i++;
+	// }
+	// return (0);
 }

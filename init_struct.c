@@ -5,7 +5,7 @@ void init_philo(t_data *data)
 
 	i = 0;
 
-	data->time_to_start = timestamp();
+	data->time_to_start = 0;
 	while (i < data->num_of_philo)
 	{
 		data->d_philo[i].id = i + 1;
@@ -13,6 +13,7 @@ void init_philo(t_data *data)
 		data->d_philo[i].nb_ate = 0;
 		data->d_philo[i].data = data;
 		data->d_philo[i].stop_time = 0;
+		i++;
 	}
 }
 
