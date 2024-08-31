@@ -15,6 +15,7 @@ void init_philo(t_data *data)
 		data->d_philo[i].stop_time = 0;
 		i++;
 	}
+
 }
 
 void init_mutex(t_data *data)
