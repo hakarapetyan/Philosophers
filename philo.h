@@ -43,7 +43,7 @@ int			check_init_arg(t_data *data, int argc, char **argv);
 long int 	timestamp();
 void		print(t_philo *data, char *str);
 int			is_dead(t_data *data, t_philo *d_philo);
-int			is_full(t_data	*data, t_philo philo);
+int			is_full(t_philo *philo);
 void		init_mutex(t_data *data);
 int			alloc_struct(t_data *data);
 void		init_philo(t_data *data);

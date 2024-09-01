@@ -37,6 +37,7 @@ void clear(t_data *data)
 	int	i;
 
 	i = 0;
+		printf("gl\n");
 	pthread_mutex_destroy(&(data->print));
 	pthread_mutex_destroy(&((*data->forks)));
 	pthread_mutex_destroy(&(data->mut_ate));

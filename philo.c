@@ -41,8 +41,12 @@ int	main(int argc, char **argv)
 	init(&data);
 	create_thread(&data);
 	while (1)
+	{
 		if(is_dead(&data, data.d_philo))
+		{ printf("baba\n");
 		break;
+		}
+	}
 	join_thread(&data);
 	clear(&data);
 	return (0);
