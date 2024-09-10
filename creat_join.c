@@ -7,10 +7,13 @@ void	*philosophers(void *data)
 
 	i = 0;
 	d = (t_philo *)data;
+	if (d->id % 2 == 0)
+		ft_usleep(500);
 	while (!stop_func(d, 0))
 	{
+		printf("stop_time22 = %d\n", d->stop_time);
 		if (d->data->num_of_philo == 1)
-			return (one_philo(data));
+			return (one_philo(d));
 		philo_eat(d);
 		philo_sleep(d);
 	}

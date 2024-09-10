@@ -14,13 +14,17 @@ void print(t_philo *d_philo, char *str)
 {
 	long int	time;
 
-	time = timestamp() - d_philo->data->time_to_start;
-	pthread_mutex_lock(&(d_philo->data->print));
+	time = timestamp(); 
+	
+	if (!pthread_mutex_lock(&(d_philo->data->print)))
+	{
 	if (time >= 0 )
 	{
 		printf("%ld %d %s",time, d_philo->id, str);
 	}
 	pthread_mutex_unlock(&(d_philo->data->print));
+	}
+	return ;
 }
 
 void ft_usleep(long int ms)
