@@ -41,8 +41,8 @@ void join_thread(t_data *data)
 	i = 0;
 	while (i < data->num_of_philo)
 	{
-		printf("i=%d\n", i);
-		if (pthread_join(data->d_philo[i].thr, NULL))
+		printf("j=i=%d\n", i);
+		if (!pthread_join(data->d_philo[i].thr, NULL))
 			return ;
 		i++;
 		printf("juni\n");

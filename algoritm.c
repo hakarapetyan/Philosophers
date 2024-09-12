@@ -8,10 +8,10 @@ int stop_func(t_philo *d_philo, int nb)
 		if (d_philo->stop_time)
 		{
 			printf("baba\n");
-			if (!pthread_mutex_unlock(&(d_philo->data->mut_stop_time)))
+			pthread_mutex_unlock(&(d_philo->data->mut_stop_time));
 			return (1);
 		}
-		pthread_mutex_unlock(&(d_philo->data->mut_stop_time));
+			pthread_mutex_unlock(&(d_philo->data->mut_stop_time));
 			return (0);
 	}
 
