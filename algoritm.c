@@ -3,17 +3,16 @@
 int stop_func(t_philo *d_philo, int nb)
 {
 	pthread_mutex_lock(&(d_philo->data->mut_stop_time));
-		if (nb)
-			d_philo->stop_time = 1;
-		if (d_philo->stop_time)
-		{
-			printf("baba\n");
-			pthread_mutex_unlock(&(d_philo->data->mut_stop_time));
-			return (1);
-		}
-			pthread_mutex_unlock(&(d_philo->data->mut_stop_time));
-			return (0);
+	if (nb)
+		d_philo->stop_time = 1;
+	if (d_philo->stop_time)
+	{
+		pthread_mutex_unlock(&(d_philo->data->mut_stop_time));
+		return (1);
 	}
+	pthread_mutex_unlock(&(d_philo->data->mut_stop_time));
+	return (0);
+}
 
 void *one_philo(t_philo *philo)
 {

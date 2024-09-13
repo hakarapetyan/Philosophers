@@ -42,9 +42,9 @@ int	main(int argc, char **argv)
 	create_thread(&data);
 	while (1)
 	{
-		printf("stop_time = %d\n", data.d_philo->stop_time);
 		if(is_dead(&data, data.d_philo))
-		{ printf("baba\n");
+		{
+			printf("yes\n");
 			break;
 		}
 	}

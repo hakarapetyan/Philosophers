@@ -63,31 +63,46 @@ int	 is_dead(t_data *data, t_philo *d_philo)
 	i = 0;
 	while (i < data->num_of_philo)
 	{
-		printf("i=%d\n", i);
 		pthread_mutex_lock(&(data->mut_die));
 		if ((int)(timestamp() - data->d_philo[i].last_eat_time) > data -> time_to_die)
 		{
-			stop_func(d_philo, 1);
+			// stop_func(d_philo, 1);
+			while (i < data->num_of_philo)
+			{
+				d_philo[i].stop_time = 1;
+				i++;
+			}
 			print(d_philo,"1died\n");
 			pthread_mutex_unlock(&(data->mut_die));
 			return (1);
 		}
 		if (!is_full(&data->d_philo[i]))
 		{
-			printf("full\n");
 			pthread_mutex_unlock(&(data->mut_die));
 			return (0);
 		}
 		else
 		{
-			stop_func(d_philo, 1);
+			//stop_func(d_philo, 1);
+			i = 0;
+			while (i < data->num_of_philo)
+			{
+				d_philo[i].stop_time = 1;
+				i++;
+			}
 			print(d_philo,"2died\n");
 			pthread_mutex_unlock(&(data->mut_die));
 			return(1);
 		}
 		i++;
-		}
-		stop_func(d_philo, 1);
+	}
+		//stop_func(d_philo, 1);
+		i = 0;
+		while (i < data->num_of_philo)
+			{
+				d_philo[i].stop_time = 1;
+				i++;
+			}
 		print(d_philo,"2died\n");
 		pthread_mutex_unlock(&(data->mut_die));
 		return (1);
