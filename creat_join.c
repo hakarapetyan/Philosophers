@@ -9,14 +9,16 @@ void	*philosophers(void *data)
 	d = (t_philo *)data;
 	if (d->id % 2 == 0)
 		ft_usleep(d->data->time_to_eat);
-	while (!stop_func(d, 0))
+	if (d->data->num_of_philo == 1)
 	{
-		if (d->data->num_of_philo == 1)
-			return (one_philo(d));
+		printf("one\n");
+		return (one_philo(d));
+	}
+	while (d->stop_time != 1)
+	{
 		philo_eat(d);
 		philo_sleep(d);
 	}
-	printf("hihi\n");
 	return (NULL);
 }
 
@@ -32,6 +34,8 @@ void create_thread(t_data *data)
 			return ;
 		i++;
 	}
+	if (data->num_of_philo == 1)
+		pthread_detach(data->d_philo[0].thr);
 }
 
 void join_thread(t_data *data)
@@ -39,28 +43,16 @@ void join_thread(t_data *data)
 	int	i;
 
 	i = 0;
-	if (pthread_join(data->d_philo[i].thr, NULL) != 0)
+	if (data->num_of_philo == 1)
 	{
-		printf("no\n");
+		pthread_detach(data->d_philo[0].thr);
 		return ;
 	}
-	i++;
-	i++;
-	printf("philo nmb -> %d\n", data->num_of_philo);
-	if (pthread_join(data->d_philo[i].thr, NULL) != 0)
+	while (i < data->num_of_philo)
 	{
-		printf("no\n");
-		return ;
+		printf("gogog\n");
+		pthread_join(data->d_philo[i].thr, NULL);
+		i++;
 	}
-	// while (i < data->num_of_philo)
-	// {
-	// 	printf("i=%d\n", i);
-	// 	if (pthread_join(data->d_philo[i].thr, NULL) == 0)
-	// 	{
-	// 		printf("no\n");
-	// 		return ;
-	// 	}
-	// 	i++;
-	// }
 	return ;
 }

@@ -42,11 +42,9 @@ int	main(int argc, char **argv)
 	create_thread(&data);
 	while (1)
 	{
-		if(is_dead(&data, data.d_philo))
-		{
-			printf("yes\n");
+		
+		if(is_dead(&data, data.d_philo) || data.num_of_philo == 1)
 			break;
-		}
 	}
 	join_thread(&data);
 	clear(&data);

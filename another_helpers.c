@@ -18,7 +18,7 @@ void print(t_philo *d_philo, char *str)
 	
 	if (!pthread_mutex_lock(&(d_philo->data->print)))
 	{
-		if (time >= 0 && d_philo ->data->time_to_start != 1)
+		if (time >= 0 && d_philo ->stop_time != 1)
 		{
 			printf("%ld %d %s",time, d_philo->id, str);
 		}
@@ -32,8 +32,16 @@ void ft_usleep(long int ms)
 	long int	time;
 
 	time = timestamp();
+		printf("time=%ld\n", time);
+	printf("ms=%ld\n", ms);
 	while ((timestamp() - time) < ms)
-		usleep (ms / 10);
+	{
+		printf("time22=%ld\n", timestamp() - time);
+		usleep (ms );
+		printf("mmmm=%ld", ms);
+		printf("time33=%ld\n", timestamp() - time);
+	}
+	printf("koko\n");
 }
 
 void clear(t_data *data)

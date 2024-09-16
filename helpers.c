@@ -69,10 +69,12 @@ int	 is_dead(t_data *data, t_philo *d_philo)
 			// stop_func(d_philo, 1);
 			while (i < data->num_of_philo)
 			{
+				pthread_mutex_lock(&(d_philo->data->mut_stop_time));
 				d_philo[i].stop_time = 1;
+				pthread_mutex_unlock(&(d_philo->data->mut_stop_time));
 				i++;
 			}
-			print(d_philo,"1died\n");
+			printf("%ld %d %s", timestamp() - d_philo -> data ->time_to_start, d_philo->id, "died\n");
 			pthread_mutex_unlock(&(data->mut_die));
 			return (1);
 		}
@@ -87,10 +89,12 @@ int	 is_dead(t_data *data, t_philo *d_philo)
 			i = 0;
 			while (i < data->num_of_philo)
 			{
+				pthread_mutex_lock(&(d_philo->data->mut_stop_time));
 				d_philo[i].stop_time = 1;
+				pthread_mutex_unlock(&(d_philo->data->mut_stop_time));
 				i++;
 			}
-			print(d_philo,"2died\n");
+			printf("%ld %d %s", timestamp() - d_philo -> data ->time_to_start, d_philo->id, "died\n");
 			pthread_mutex_unlock(&(data->mut_die));
 			return(1);
 		}
@@ -103,7 +107,7 @@ int	 is_dead(t_data *data, t_philo *d_philo)
 				d_philo[i].stop_time = 1;
 				i++;
 			}
-		print(d_philo,"2died\n");
+		printf("%ld %d %s", timestamp() - d_philo -> data ->time_to_start, d_philo->id, "died\n");
 		pthread_mutex_unlock(&(data->mut_die));
 		return (1);
 }
