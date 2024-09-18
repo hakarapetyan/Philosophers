@@ -14,15 +14,11 @@
 // 	return (0);
 // }
 
-void *one_philo(t_philo *philo)
+void *one_philo(void *phl)
 {
-	pthread_mutex_lock((philo->l_fork));
+	t_philo *philo = (t_philo *) phl; 
 	print(philo,"has taken a fork\n");
-	printf("two\n");
-	printf("dd=%d", philo->data->time_to_die);
-	ft_usleep(philo->data->time_to_die);
-	printf("%ld %d %s", timestamp() - (philo -> data ->time_to_start), philo->id, "died\n");
-	pthread_mutex_unlock((philo->l_fork));
+	printf("%d %d %s", philo->data->time_to_die, philo->id, "died\n");
 	return (NULL) ;
 }
 

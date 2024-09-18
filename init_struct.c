@@ -9,13 +9,12 @@ void init_philo(t_data *data)
 	while (i < data->num_of_philo)
 	{
 		data->d_philo[i].id = i + 1;
-		data->d_philo[i].last_eat_time = 0;
+		data->d_philo[i].last_eat_time = timestamp();
 		data->d_philo[i].nb_ate = 0;
 		data->d_philo[i].data = data;
 		data->d_philo[i].stop_time = 0;
 		i++;
 	}
-
 }
 
 void init_mutex(t_data *data)
@@ -28,6 +27,8 @@ void init_mutex(t_data *data)
 	pthread_mutex_init(&(data->mut_last_eat), NULL);
 	pthread_mutex_init(&(data->mut_die), NULL);
 	pthread_mutex_init(&(data->mut_stop_time), NULL);
+	pthread_mutex_init(&(data->mut_eve_ate), NULL);
+
 	while (i < data->num_of_philo)
 	{
 	pthread_mutex_init(&data->forks[i], NULL);
@@ -49,7 +50,6 @@ void init_mutex(t_data *data)
 		}
 		i++;
 	}
-
 }
 
 int alloc_struct(t_data *data)

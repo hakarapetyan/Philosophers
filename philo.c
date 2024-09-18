@@ -40,11 +40,20 @@ int	main(int argc, char **argv)
 		return (0);
 	init(&data);
 	create_thread(&data);
+	if (data.num_of_philo == 1)
+	{
+		pthread_join(data.d_philo[0].thr, NULL);
+		return (0);
+	}
 	while (1)
 	{
-		
-		if(is_dead(&data, data.d_philo) || data.num_of_philo == 1)
+		if(is_dead(&data, data.d_philo))
 			break;
+	// 	if (data.num_of_philo == 1)
+	// {
+	// 	pthread_detach(data.d_philo[0].thr);
+	// 	break;
+	// }	
 	}
 	join_thread(&data);
 	clear(&data);

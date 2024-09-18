@@ -28,11 +28,13 @@ typedef struct s_data
 	int must_eat_time;
 	long int	time_to_start;
 	t_philo *d_philo;
+	int	eve_ate;
 	pthread_mutex_t *forks;
 	pthread_mutex_t	print;
 	pthread_mutex_t	mut_ate;
 	pthread_mutex_t	mut_last_eat;
 	pthread_mutex_t	mut_die;
+	pthread_mutex_t mut_eve_ate;
 	pthread_mutex_t	mut_stop_time;
 }t_data;
 
@@ -49,7 +51,8 @@ int			alloc_struct(t_data *data);
 void		init_philo(t_data *data);
 void		init(t_data *data);
 int			stop_func(t_philo *d_philo, int nb);
-void		*one_philo(t_philo *data);
+// void		*one_philo(t_philo *data);
+void *one_philo(void *phl);
 void		philo_eat(t_philo *data);
 void		philo_sleep(t_philo *data);
 void		*philosophers(void *data);

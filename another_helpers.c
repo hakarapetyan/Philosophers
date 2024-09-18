@@ -32,16 +32,8 @@ void ft_usleep(long int ms)
 	long int	time;
 
 	time = timestamp();
-		printf("time=%ld\n", time);
-	printf("ms=%ld\n", ms);
 	while ((timestamp() - time) < ms)
-	{
-		printf("time22=%ld\n", timestamp() - time);
-		usleep (ms );
-		printf("mmmm=%ld", ms);
-		printf("time33=%ld\n", timestamp() - time);
-	}
-	printf("koko\n");
+		usleep (ms/10);
 }
 
 void clear(t_data *data)
