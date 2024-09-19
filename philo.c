@@ -47,13 +47,8 @@ int	main(int argc, char **argv)
 	}
 	while (1)
 	{
-		if(is_dead(&data, data.d_philo))
-			break;
-	// 	if (data.num_of_philo == 1)
-	// {
-	// 	pthread_detach(data.d_philo[0].thr);
-	// 	break;
-	// }	
+		if(is_dead(&data))
+			break;	
 	}
 	join_thread(&data);
 	clear(&data);
