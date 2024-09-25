@@ -1,13 +1,14 @@
 NAME = philo
 
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror -g3 #-fsanitize=thread
 
 SRCS = algoritm.c\
 helpers.c\
 init_struct.c\
 philo.c\
 creat_join.c\
-another_helpers.c
+another_helpers.c\
+val_init.c
 
 OBJS = $(SRCS:.c=.o)
 
