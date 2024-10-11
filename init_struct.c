@@ -6,7 +6,7 @@
 /*   By: hakarape <hakarape@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:48:55 by hakarape          #+#    #+#             */
-/*   Updated: 2024/09/25 20:18:22 by hakarape         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:16:54 by hakarape         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,21 +70,25 @@ int	alloc_struct(t_data *data)
 {
 	data->d_philo = (t_philo *)malloc(sizeof(t_philo) * data->num_of_philo);
 	if (!data->d_philo)
-		return (0);
+		return (1);
 	data->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
 			* data->num_of_philo);
 	if (!data->forks)
 	{
 		free(data->d_philo);
-		return (0);
+		return (1);
 	}
 	return (0);
 }
 
-void	init(t_data *data)
+int	init(t_data *data)
 {
-	alloc_struct(data);
-	init_mutex_help(data);
-	init_mutex(data);
-	init_philo(data);
+	if (!alloc_struct(data))
+	{
+		init_mutex_help(data);
+		init_mutex(data);
+		init_philo(data);
+		return (0);
+	}
+	return (1);
 }

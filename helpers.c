@@ -6,7 +6,7 @@
 /*   By: hakarape <hakarape@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:48:46 by hakarape          #+#    #+#             */
-/*   Updated: 2024/09/25 20:26:59 by hakarape         ###   ########.fr       */
+/*   Updated: 2024/10/08 17:33:12 by hakarape         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	func_time(t_data *data)
 		{
 			end(data);
 			pthread_mutex_lock(&(data->print));
-			printf("%ld %d 1died\n", timestamp() - data->time_to_start,
+			printf("%ld %d died\n", timestamp() - data->time_to_start,
 				data->d_philo[i].id);
 			pthread_mutex_unlock(&(data->print));
 			return (1);

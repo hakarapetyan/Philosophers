@@ -6,7 +6,7 @@
 /*   By: hakarape <hakarape@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:24:49 by hakarape          #+#    #+#             */
-/*   Updated: 2024/09/25 20:31:22 by hakarape         ###   ########.fr       */
+/*   Updated: 2024/10/07 16:33:07 by hakarape         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	check_init_arg(t_data *data, int argc, char **argv)
 	}
 	while (i < argc)
 	{
-		if (ft_atoi(argv[i]) <= 0)
+		if (ft_atoi(argv[i]) <= 0 || ft_atoi(argv[i]) > 2147483647)
 		{
 			ft_error("INVALID ARGUMENT");
 			return (1);

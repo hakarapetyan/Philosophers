@@ -6,7 +6,7 @@
 /*   By: hakarape <hakarape@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:47:57 by hakarape          #+#    #+#             */
-/*   Updated: 2024/09/25 20:11:21 by hakarape         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:17:37 by hakarape         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,24 +67,3 @@ void	clear(t_data *data)
 	free(data->d_philo);
 	free(data->forks);
 }
-// void	clear(t_data *data)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	pthread_mutex_destroy(&(data->print));
-// 	pthread_mutex_destroy(&((*data->forks)));
-// 	pthread_mutex_destroy(&(data->mut_ate));
-// 	pthread_mutex_destroy(&(data->mut_last_eat));
-// 	pthread_mutex_destroy(&(data->mut_die));
-// 	pthread_mutex_destroy(&(data->mut_stop_time));
-// 	pthread_mutex_destroy(&(data->mut_stop), NULL);
-// 	while (i < data->num_of_philo)
-// 	{
-// 		pthread_mutex_destroy((data->d_philo[i].l_fork));
-// 		pthread_mutex_destroy((data->d_philo[i].r_fork));
-// 		i++;
-// 	}
-// 	free(data->d_philo);
-// 	free(data->forks);
-// }

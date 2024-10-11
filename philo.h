@@ -6,7 +6,7 @@
 /*   By: hakarape <hakarape@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:51:32 by hakarape          #+#    #+#             */
-/*   Updated: 2024/09/25 20:30:34 by hakarape         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:09:42 by hakarape         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int					is_full(t_philo *philo);
 void				init_mutex(t_data *data);
 int					alloc_struct(t_data *data);
 void				init_philo(t_data *data);
-void				init(t_data *data);
+int					init(t_data *data);
 int					stop_func(t_philo *d_philo, int nb);
 void				*one_philo(void *phl);
 void				philo_eat(t_philo *data);
