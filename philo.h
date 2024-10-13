@@ -6,7 +6,7 @@
 /*   By: hakarape <hakarape@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:51:32 by hakarape          #+#    #+#             */
-/*   Updated: 2024/10/07 17:09:42 by hakarape         ###   ########.fr       */
+/*   Updated: 2024/10/13 16:31:20 by hakarape         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct s_philo
 	unsigned long	last_eat_time;
 	int				nb_ate;
 	int				stop_time;
+	pthread_mutex_t	mut_last_eat;
+	pthread_mutex_t	mut_stop_time;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
 }					t_philo;
@@ -44,10 +46,10 @@ typedef struct s_data
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print;
 	pthread_mutex_t	mut_ate;
-	pthread_mutex_t	mut_last_eat;
 	pthread_mutex_t	mut_die;
-	pthread_mutex_t	mut_stop_time;
 	pthread_mutex_t	mut_stop;
+	pthread_mutex_t mut_getter;
+	pthread_mutex_t mutex_new; 
 }					t_data;
 
 long				ft_atoi(char *str);
@@ -69,11 +71,13 @@ void				*philosophers(void *data);
 void				create_thread(t_data *data);
 void				join_thread(t_data *data);
 void				clear(t_data *data);
-void				stop_simulation(t_data *data);
+//void				stop_simulation(t_data *data);
 int					is_dead(t_data *data);
 int					func_time(t_data *data);
-int					is_sim_end(t_data *data);
+int					is_sim_end(t_philo *d_philo);
 void				end(t_data *data);
 void				init_mutex_help(t_data *data);
 void				init_arg(t_data *data, int argc, char **argv);
+int	get_nb_philos(t_data *data);
+int get_last_eat(t_philo *d_philo);
 #endif

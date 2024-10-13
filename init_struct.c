@@ -6,7 +6,7 @@
 /*   By: hakarape <hakarape@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:48:55 by hakarape          #+#    #+#             */
-/*   Updated: 2024/10/07 17:16:54 by hakarape         ###   ########.fr       */
+/*   Updated: 2024/10/13 15:35:50 by hakarape         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void	init_mutex_help(t_data *data)
 {
 	pthread_mutex_init(&(data->print), NULL);
 	pthread_mutex_init(&(data->mut_ate), NULL);
-	pthread_mutex_init(&(data->mut_last_eat), NULL);
 	pthread_mutex_init(&(data->mut_die), NULL);
-	pthread_mutex_init(&(data->mut_stop_time), NULL);
 	pthread_mutex_init(&(data->mut_stop), NULL);
+	pthread_mutex_init(&(data->mut_getter), NULL);
+	pthread_mutex_init(&(data->mutex_new), NULL);
 }
 
 void	init_mutex(t_data *data)
@@ -52,6 +52,8 @@ void	init_mutex(t_data *data)
 	i = 0;
 	while (i < data->num_of_philo)
 	{
+		pthread_mutex_init(&(data->d_philo[i].mut_last_eat), NULL);
+		pthread_mutex_init(&(data->d_philo[i].mut_stop_time), NULL);
 		if (i == data->num_of_philo - 1)
 		{
 			data->d_philo[i].r_fork = &data->forks[i];

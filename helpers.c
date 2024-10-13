@@ -6,7 +6,7 @@
 /*   By: hakarape <hakarape@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:48:46 by hakarape          #+#    #+#             */
-/*   Updated: 2024/10/08 17:33:12 by hakarape         ###   ########.fr       */
+/*   Updated: 2024/10/13 16:54:03 by hakarape         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 int	func_time(t_data *data)
 {
 	int	i;
+	int num = get_nb_philos(data);
 
 	i = 0;
-	while (i < data->num_of_philo)
+	while (i < num)
 	{
 		if ((int)(timestamp()
-			- data->d_philo[i].last_eat_time) > data->time_to_die)
+			- get_last_eat(&(data->d_philo[i]))) > data->time_to_die)
 		{
 			end(data);
 			pthread_mutex_lock(&(data->print));
@@ -70,26 +71,27 @@ int	is_dead(t_data *data)
 	return (0);
 }
 
-int	is_sim_end(t_data *data)
+int	is_sim_end(t_philo *d_philo)
 {
 	int	tmp;
 
-	pthread_mutex_lock(&data->mut_stop_time);
-	tmp = data->d_philo->stop_time;
-	pthread_mutex_unlock(&data->mut_stop_time);
+	pthread_mutex_lock(&d_philo->mut_stop_time);
+	tmp = d_philo->stop_time;
+	pthread_mutex_unlock(&d_philo->mut_stop_time);
 	return (tmp);
 }
 
 void	end(t_data *data)
 {
 	int	i;
+	int num = get_nb_philos(data);
 
 	i = 0;
-	while (i < data->num_of_philo)
+	while (i < num)
 	{
-		pthread_mutex_lock(&data->mut_stop);
+		pthread_mutex_lock(&data->d_philo[i].mut_stop_time);
 		data->d_philo[i].stop_time = 1;
-		pthread_mutex_unlock(&data->mut_stop);
+		pthread_mutex_unlock(&data->d_philo[i].mut_stop_time);
 		i++;
 	}
 }

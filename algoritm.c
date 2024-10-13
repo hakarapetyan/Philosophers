@@ -6,7 +6,7 @@
 /*   By: hakarape <hakarape@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:47:35 by hakarape          #+#    #+#             */
-/*   Updated: 2024/10/08 15:53:17 by hakarape         ###   ########.fr       */
+/*   Updated: 2024/10/13 17:10:36 by hakarape         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	philo_eat(t_philo *d_philo)
 	print(d_philo, "has taken a fork\n");
 	pthread_mutex_lock((d_philo->r_fork));
 	print(d_philo, "has taken a fork\n");
-	pthread_mutex_lock(&(d_philo->data->mut_last_eat));
+	pthread_mutex_lock(&(d_philo->mut_last_eat));
 	d_philo->last_eat_time = timestamp();
-	pthread_mutex_unlock(&(d_philo->data->mut_last_eat));
+	pthread_mutex_unlock(&(d_philo->mut_last_eat));
 	print(d_philo, "is eating\n");
 	ft_usleep(d_philo->data->time_to_eat);
 	pthread_mutex_lock(&(d_philo->data->mut_ate));
